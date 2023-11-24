@@ -1,4 +1,11 @@
 * {
   margin: 0;
   padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+  --col1: rgb(248, 68, 100);
+  --col2: #333444;
+  --errorcol: rgb(255, 0, 0);
 }
