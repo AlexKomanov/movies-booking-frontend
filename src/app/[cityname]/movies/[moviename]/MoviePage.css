@@ -1,4 +1,3 @@
-
 /* -----------------------------c1---------------------------------- */
 
 .moviepage {
@@ -105,10 +104,11 @@
     cursor: pointer;
 }
 
-.moviepage .sharebtn .shareicon{
+.moviepage .sharebtn .shareicon {
     font-size: 25px;
     margin-right: 5px;
 }
+
 .moviepage .sharebtn {
     background-color: rgb(21, 21, 21);
     color: white;
@@ -128,3 +128,33 @@
 
 /* -----------------------------c2---------------------------------- */
 
+.moviepage .c2 {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 70%;
+}
+
+.moviepage .c2 h1,
+.moviepage .c2 h2 {
+    font-size: 25px;
+    font-weight: 600;
+    color: var(--col2);
+    width: fit-content;
+    padding: 0px 0px;
+}
+
+.moviepage .c2 p {
+    font-size: 18px;
+    font-weight: 400;
+    color: grey;
+}
+
+
+.moviepage .c2 .line {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(233, 233, 233);
+    margin: 30px 0px;
+}

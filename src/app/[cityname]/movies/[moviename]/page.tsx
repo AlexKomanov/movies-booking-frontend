@@ -4,6 +4,11 @@ import { BsShare } from 'react-icons/bs';
 import { BsFillStarFill } from 'react-icons/bs';
 import "./MoviePage.css";
 import MoviesCarousel from '@/components/MoviesCarousel/MoviesCarousel';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import CelebCard from '@/components/CelebCard/CelebCard';
 
 const MoviePage = () => {
 
@@ -27,6 +32,18 @@ const MoviePage = () => {
                 name: "Will Smith",
                 role: "Actor",
                 imageUrl: "https://pbs.twimg.com/profile_images/598193182833135616/H_H9SZgx_400x400.jpg"
+            },
+            {
+                _id: "1",
+                name: "Will Smith",
+                role: "Actor",
+                imageUrl: "https://pbs.twimg.com/profile_images/598193182833135616/H_H9SZgx_400x400.jpg"
+            },
+            {
+                _id: "1",
+                name: "Will Smith",
+                role: "Actor",
+                imageUrl: "https://pbs.twimg.com/profile_images/598193182833135616/H_H9SZgx_400x400.jpg"
             }
         ],
         crew: [
@@ -34,7 +51,19 @@ const MoviePage = () => {
                 _id: "1",
                 name: "James Cameron",
                 role: "Director",
-                imageUrl: "https://variety.com/wp-content/uploads/2023/07/Screen-Shot-2023-07-19-at-10.15.32-AM.png"
+                imageUrl: "https://res.cloudinary.com/dxw0o8aaj/image/upload/c_fill,g_face:auto,w_640,h_640/v1/explorer_profiles/unf8o6see6wip8v5fsci"
+            },
+            {
+                _id: "2",
+                name: "James Cameron",
+                role: "Director",
+                imageUrl: "https://res.cloudinary.com/dxw0o8aaj/image/upload/c_fill,g_face:auto,w_640,h_640/v1/explorer_profiles/unf8o6see6wip8v5fsci"
+            },
+            {
+                _id: "3",
+                name: "James Cameron",
+                role: "Director",
+                imageUrl: "https://res.cloudinary.com/dxw0o8aaj/image/upload/c_fill,g_face:auto,w_640,h_640/v1/explorer_profiles/unf8o6see6wip8v5fsci"
             }
         ],
         about: "Years after a plague kills most of humanity and transforms the rest into monsters, the sole survivor in New York City struggles valiantly to find a cure."
@@ -97,12 +126,88 @@ const MoviePage = () => {
             <div className="c2">
                 <h1>About the Movie</h1>
                 <p>{movie.about}</p>
+                <div className="circle_and_slider">
                 <div className="line"></div>
                 <h2>Cast</h2>
-                <div className="circle_and_slider"></div>
+                <Swiper
+                    slidesPerView={1}
+                    spaceBetween={1}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    breakpoints={{
+                        '@0.00': {
+                            slidesPerView: 1,
+                            spaceBetween: 2,
+                        },
+                        '@0.75': {
+                            slidesPerView: 2,
+                            spaceBetween: 2,
+                        },
+                        '@1.00': {
+                            slidesPerView: 3,
+                            spaceBetween: 2,
+                        },
+                        '@1.50': {
+                            slidesPerView: 6,
+                            spaceBetween: 2,
+                        },
+                    }}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                >
+                    {
+                        movie.cast.map((cast, index) => {
+                            return (
+                                <SwiperSlide key={index}>
+                                    <CelebCard {...cast} />
+                                </SwiperSlide>
+                            )
+                        })
+                    }
+                </Swiper>
+                </div>
+                <div className="circle_and_slider">
                 <div className="line"></div>
                 <h2>Crew</h2>
-                <div className="circle_and_slider"></div>
+                <Swiper
+                    slidesPerView={1}
+                    spaceBetween={1}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    breakpoints={{
+                        '@0.00': {
+                            slidesPerView: 1,
+                            spaceBetween: 2,
+                        },
+                        '@0.75': {
+                            slidesPerView: 2,
+                            spaceBetween: 2,
+                        },
+                        '@1.00': {
+                            slidesPerView: 3,
+                            spaceBetween: 2,
+                        },
+                        '@1.50': {
+                            slidesPerView: 6,
+                            spaceBetween: 2,
+                        },
+                    }}
+                    modules={[Pagination]}
+                    className="mySwiper"
+                >
+                    {
+                        movie.crew.map((cast, index) => {
+                            return (
+                                <SwiperSlide key={index}>
+                                    <CelebCard {...cast} />
+                                </SwiperSlide>
+                            )
+                        })
+                    }
+                </Swiper>
+                </div>
                 <div className="line"></div>
                 <h2>You might also like</h2>
                 <MoviesCarousel />
