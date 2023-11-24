@@ -11,8 +11,8 @@ import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
 import Image from 'next/image';
 import { FILM_BANNERS } from './films-banners';
 
-const width = window.innerWidth;
-const height = window.innerHeight;
+const width = window?.innerWidth;
+const height = window?.innerHeight;
 
 const HomeSlider = () => {
 
