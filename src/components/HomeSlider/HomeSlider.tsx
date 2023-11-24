@@ -8,8 +8,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination, Mousewheel, Keyboard } from 'swiper/modules';
+import Image from 'next/image';
+import { FILM_BANNERS } from './films-banners';
+
+const width = window.innerWidth;
+const height = window.innerHeight;
 
 const HomeSlider = () => {
+
+    const [banners, setBanners] = useState(FILM_BANNERS)
+
     return (
         <Swiper
             cssMode={true}
@@ -20,11 +28,19 @@ const HomeSlider = () => {
             modules={[Navigation, Pagination, Mousewheel, Keyboard]}
             className="mySwiper"
         >
-            <SwiperSlide>Slide 1</SwiperSlide>
-            <SwiperSlide>Slide 2</SwiperSlide>
-            <SwiperSlide>Slide 3</SwiperSlide>
-            <SwiperSlide>Slide 4</SwiperSlide>
-            <SwiperSlide>Slide 5</SwiperSlide>
+            
+            {
+                banners.map((banner, index) => {
+                    return (
+                        <SwiperSlide key={index}>
+                            <Image src={banner.imgUrl} alt={`banner_${index+1}`} 
+                                   width={width} height={height / 2} 
+                                     style={{objectFit: "fill"}}/>
+                        </SwiperSlide>
+                    )
+                })
+            }
+
         </Swiper>
     )
 }
