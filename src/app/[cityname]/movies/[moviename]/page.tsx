@@ -124,7 +124,7 @@ const MoviePage = () => {
                 </div>
             </div>
             <div className="c2">
-                <h1>About the Movie</h1>
+                <h2>About the Movie</h2>
                 <p>{movie.about}</p>
                 <div className="circle_and_slider">
                 <div className="line"></div>
