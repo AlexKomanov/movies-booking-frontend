@@ -10,15 +10,21 @@ import logo from '@/assets/logo.png';
 
 // Define an interface for the form data
 interface FormData {
+    name: string;
     email: string;
     password: string;
+    confirmPassword: string;
+    city: string;
 }
 
-const Signin = () => {
+const Signup = () => {
 
     const [formData, setFormData] = useState<FormData>({
+        name: '',
         email: '',
         password: '',
+        confirmPassword: '',
+        city: ''
     });
 
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -40,7 +46,9 @@ const Signin = () => {
         if (!formData.password) {
             validationErrors.password = 'Password is required';
         }
-
+        if (formData.password !== formData.confirmPassword) {
+            validationErrors.confirmPassword = 'Passwords do not match';
+        }
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             return;
@@ -54,7 +62,24 @@ const Signin = () => {
                     <Image src={logo} alt="" className='img' />
                 </div>
                 <div className='right'>
-                    <form  onSubmit={handleSubmit} >
+                    <form
+                        style={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                        }}
+                        onSubmit={handleSubmit}
+                    >
+                        <div className="forminput_cont">
+                            <label>Name</label>
+                            <input
+                                type="text"
+                                placeholder="Enter Your Name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                            />
+                            {errors.name && <span className="formerror">{errors.name}</span>}
+                        </div>
                         <div className="forminput_cont">
                             <label>Email</label>
                             <input
@@ -75,21 +100,31 @@ const Signin = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                             />
-                            {errors.password && <span className="formerror">{errors.password}</span>}
+                            {errors.password && (
+                                <span className="formerror">{errors.password}</span>
+                            )}
                         </div>
-
-                        <button type="submit" className="main_button">
-                            Login
-                        </button>
-
-                        <p className="authlink">
-                            Don&apos;t have an account? <Link href="/auth/signup">Register</Link>
-                        </p>
+                        <div className="forminput_cont">
+                            <label>Confirm Password</label>
+                            <input
+                                type="password"
+                                placeholder="Confirm Your Password"
+                                name="confirmPassword"
+                                value={formData.confirmPassword}
+                                onChange={handleChange}
+                            />
+                            {errors.confirmPassword && (
+                                <span className="formerror">{errors.confirmPassword}</span>
+                            )}
+                        </div>
+                        <button type="submit" className="main_button">Register</button>
+                        <p className='authlink'>Already have an account? <Link href="/auth/signin">Login</Link></p>
                     </form>
                 </div>
+
             </div>
-        </div>
+        </div >
     )
 }
 
-export default Signin;
+export default Signup;
