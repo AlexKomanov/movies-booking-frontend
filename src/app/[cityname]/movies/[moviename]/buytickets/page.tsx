@@ -53,7 +53,7 @@ const BuyTickets = () => {
         {
           movie.screens.map((screen, index) => {
             return (
-              <div className="screen">
+              <div className="screen" key={index}>
                 <div>
                   <h2>{screen.name}</h2>
                   <h3>{screen.location}</h3>
