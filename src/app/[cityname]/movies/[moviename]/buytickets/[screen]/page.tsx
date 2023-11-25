@@ -1,5 +1,7 @@
 "use client"
 import React, { useState } from 'react'
+import './SelectSeat.css'
+
 
 const page = () => {
 
@@ -1803,22 +1805,35 @@ const page = () => {
                         seatType.rows.map((row, rowIndex) => (
                             <div className="seat-row" key={rowIndex}>
                                 <p className="rowname">{row.rowname}</p>
-                                <div className="seat-cols">
-                                    <div className="seat-col">
-                                        {row.seats.map((seat, seatIndex) => (
-                                            <div key={seatIndex}>
-                                                {
-                                                    seat.status === 'available' &&
-                                                    <span className='seat-available'> {row.rowname.toUpperCase()}{seat.seat_id} </span>
+                                <div className="seat-col">
+                                    {row.seats.map((seat, seatIndex) => (
+                                        <div key={seatIndex}>
+                                            {
+                                                seat.status === 'available' &&
+                                                <span className={
+                                                    selectedSeats.find((selectedSeat: any) => (
+                                                        selectedSeat.row === row.rowname &&
+                                                        selectedSeat.seat_id === seat.seat_id)) 
+                                                        ? "seat-selected" 
+                                                        : "seat-available"
                                                 }
-                                                {
-                                                    seat.status === 'not-available' &&
-                                                    <span className='seat-not-available'> {row.rowname.toUpperCase()}{seat.seat_id} </span>
-                                                }
-                                            </div>
-                                        ))}
-                                    </div>
+                                                    onClick={() => selectDeselectSeat({
+                                                        row: row.rowname,
+                                                        seat_id: seat.seat_id,
+                                                        price: seatType.price
+                                                    })}
+                                                >
+                                                    {seatIndex + 1}
+                                                </span>
+                                            }
+                                            {
+                                                seat.status === 'not-available' &&
+                                                <span className='seat-not-available'> {seatIndex + 1} </span>
+                                            }
+                                        </div>
+                                    ))}
                                 </div>
+
                             </div>
                         ))
                     }
@@ -1828,6 +1843,29 @@ const page = () => {
     }
 
     const [selectedTime, setSelectedTime] = useState(screen.timeslots[0])
+
+    const [selectedSeats, setSelectedSeats] = React.useState<any[]>([])
+
+
+
+
+    const selectDeselectSeat = (seatToHandle: any) => {
+        console.log('seatToHandle', seatToHandle)
+
+        const isselected = selectedSeats.find((selectedSeat: any) => {
+            return selectedSeat.row === seatToHandle.row && selectedSeat.seat_id === seatToHandle.seat_id;
+        })
+
+        if (isselected) {
+            setSelectedSeats(selectedSeats.filter((s: any) => (
+                s.seat_id !== seatToHandle.seat_id
+            )))
+        }
+
+        else {
+            setSelectedSeats([...selectedSeats, seatToHandle]);
+        }
+    }
 
     return (
         <div className="selectseatpage">
@@ -1849,7 +1887,7 @@ const page = () => {
                 </div>
                 <div className='indicators'>
                     <div>
-                        <span className='seat-unavailable'></span>
+                        <span className='seat-not-available'></span>
                         <p>Not available</p>
                     </div>
                     <div>
