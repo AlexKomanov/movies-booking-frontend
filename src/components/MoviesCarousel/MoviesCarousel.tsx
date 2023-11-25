@@ -26,12 +26,12 @@ const MoviesCarousel = () => {
             type: "Thriller"
         },
         {
-            title: "Citizen Kane",
-            slug: "citizen-kane",
-            imageUrl: "https://media.timeout.com/images/102793634/1920/1080/image.jpg",
+            title: "I am Legend",
+            slug: "i-am-legend",
+            imageUrl: "https://resizing.flixster.com/-XZAfHZM39UwaGJIFWKAE8fS0ak=/v3/t/assets/p170977_p_v7_ae.jpg",
             _id: "3",
             rating: 9.6,
-            type: "Action"
+            type: "Adventure"
         },
         {
             title: "Hannah and Her Sisters",
@@ -99,7 +99,7 @@ const MoviesCarousel = () => {
                 className="mySwiper"
             >
                 {
-                    movies.map((movie,  index) => {
+                    movies?.map((movie,  index) => {
                         return (
                             <SwiperSlide key={index}>
                                 <MovieCard {...movie} />
