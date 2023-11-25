@@ -9,8 +9,12 @@ import 'swiper/css/pagination';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import CelebCard from '@/components/CelebCard/CelebCard';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const MoviePage = () => {
+
+    const currentPagePath = usePathname();
 
     const movie = {
         widePoster: "https://cdn.wallpapersafari.com/56/33/aC1zVe.jpg",
@@ -115,7 +119,9 @@ const MoviePage = () => {
                                     {movie.releaseDate}
                                 </span>
                             </p>
+                            <Link href={`${currentPagePath}/buytickets`} className='linkstylenonr'>
                             <button className="bookbtn">Book Tickets</button>
+                            </Link>
                         </div>
                     </div>
                     <div className="right">
