@@ -7,7 +7,7 @@
 :root {
   --col1: rgb(248, 68, 100);
   --col2: #333444;
-  --errorcol: rgb(255, 0, 0);
+  --errorcol: #F80918;
 }
 
 .linkstylenone {
